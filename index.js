@@ -6,6 +6,8 @@
 const fs = require('fs');
 const util = require('util');
 
+const chalk = require('chalk');
+
 // Method #2 with Promise
 // const lstat = util.promisify(fs.lstat);
 
@@ -30,7 +32,11 @@ fs.readdir(process.cwd(), async (err, filenames) => {
     // stats does not have info about file, need file at index
     const index = allStats.indexOf(stats);
 
-    console.log(filenames[index], stats.isFile());
+    if (stats.isFile()) {
+      console.log(filenames[index]);
+    } else {
+      console.log(chalk.red(filenames[index]));
+    }
   }
 });
 

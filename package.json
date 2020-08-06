@@ -19,5 +19,8 @@
   "bugs": {
     "url": "https://github.com/reyeskevin9767/recreate-ls-command/issues"
   },
-  "homepage": "https://github.com/reyeskevin9767/recreate-ls-command#readme"
+  "homepage": "https://github.com/reyeskevin9767/recreate-ls-command#readme",
+  "dependencies": {
+    "chalk": "^4.1.0"
+  }
 }
