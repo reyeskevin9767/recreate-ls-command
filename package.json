@@ -14,7 +14,7 @@
   "author": "",
   "license": "ISC",
   "bin": {
-    "nls": "index.js"
+    "node-ls": "index.js"
   },
   "bugs": {
     "url": "https://github.com/reyeskevin9767/recreate-ls-command/issues"
