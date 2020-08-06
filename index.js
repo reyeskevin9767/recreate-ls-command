@@ -5,6 +5,7 @@
 //* File System From Node
 const fs = require('fs');
 const util = require('util');
+const path = require('path');
 
 const chalk = require('chalk');
 
@@ -14,22 +15,25 @@ const chalk = require('chalk');
 //* Method #3 with Promise
 const { lstat } = fs.promises;
 
+//* Sets directory to argument after node-ls or current directory
+const targetDir = process.argv[2] || process.cwd();
+
 //* Read Current Directory
-fs.readdir(process.cwd(), async (err, filenames) => {
+fs.readdir(targetDir, async (err, filenames) => {
   if (err) {
     console.log(err);
   }
 
-  // Get information about file and determine type
+  // Get information about file and determine type with lstat
   const statPromises = filenames.map((filename) => {
-    return lstat(filename);
+    return lstat(path.join(targetDir, filename));
   });
 
   // Wait for all the promises to be finish
   const allStats = await Promise.all(statPromises);
 
   for (let stats of allStats) {
-    // stats does not have info about file, need file at index
+    // stats does not have info about file, need index
     const index = allStats.indexOf(stats);
 
     if (stats.isFile()) {
