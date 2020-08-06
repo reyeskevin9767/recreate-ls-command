@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 //* ^-- Node to execute file
-// Developer Reminder -> npm link -> link filename
+// Developer Reminder for new commands -> npm link -> link filename
 
 //* File System From Node
 const fs = require('fs');
