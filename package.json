@@ -1,0 +1,23 @@
+{
+  "name": "recreate-ls-command",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/reyeskevin9767/recreate-ls-command.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bin": {
+    "node-ls": "index.js"
+  },
+  "bugs": {
+    "url": "https://github.com/reyeskevin9767/recreate-ls-command/issues"
+  },
+  "homepage": "https://github.com/reyeskevin9767/recreate-ls-command#readme"
+}
