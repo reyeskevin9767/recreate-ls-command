@@ -19,13 +19,18 @@ fs.readdir(process.cwd(), async (err, filenames) => {
   }
 
   // Get information about file and determine type
-  for (let filename of filenames) {
-    const stats = await lstat(filename);
-    try {
-      console.log(filename, stats.isFile());
-    } catch (err) {
-      console.log(err);
-    }
+  const statPromises = filenames.map((filename) => {
+    return lstat(filename);
+  });
+
+  // Wait for all the promises to be finish
+  const allStats = await Promise.all(statPromises);
+
+  for (let stats of allStats) {
+    // stats does not have info about file, need file at index
+    const index = allStats.indexOf(stats);
+
+    console.log(filenames[index], stats.isFile());
   }
 });
 
