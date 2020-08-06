@@ -11,25 +11,16 @@ fs.readdir(process.cwd(), (err, filenames) => {
     console.log(err);
   }
 
-  // Get information about file
-  const allStats = Array(filenames.length).fill(null);
-  for (let filename of filenames) {
-    const index = filenames.indexOf(filename);
-    fs.lstat(filename, (err, stats) => {
-      if (err) {
-        console.log(err);
-      }
-      allStats[index] = stats;
+  // Get information about file and determine type
+  const lstat = (filename) => {
+    return new Promise((resolve, reject) => {
+      fs.lstat(filename, (err, stats) => {
+        if (err) {
+          reject(err);
+        }
 
-      const ready = allStats.every((stats) => {
-        return stats;
+        resolve(stats);
       });
-
-      if (ready) {
-        allStats.forEach((stats, index) => {
-          console.log(filenames[index], stats.isFile());
-        });
-      }
     });
-  }
+  };
 });
