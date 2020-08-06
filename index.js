@@ -36,14 +36,27 @@ fs.readdir(targetDir, async (err, filenames) => {
     // stats does not have info about file, need index
     const index = allStats.indexOf(stats);
 
+    // Color each type of file
     if (stats.isFile()) {
-      console.log(filenames[index]);
+      if (!imageFile(filenames, index)) {
+        console.log(chalk.yellow(filenames[index]));
+      } else {
+        console.log(chalk.green(filenames[index]));
+      }
     } else {
       console.log(chalk.red(filenames[index]));
     }
   }
 });
 
+//* Check if file is an image
+function imageFile(filenames, index) {
+  return (
+    filenames[index].includes('.jpg') ||
+    filenames[index].includes('.png') ||
+    filenames[index].includes('.gif')
+  );
+}
 // Method #1 with Promise
 // const lstat = (filename) => {
 //   return new Promise((resolve, reject) => {
