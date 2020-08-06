@@ -4,9 +4,13 @@
 
 //* File System From Node
 const fs = require('fs');
-
 const util = require('util');
-const lstat = util.promisify(fs.lstat)
+
+//* Method #2 with Promise
+// const lstat = util.promisify(fs.lstat);
+
+//* Method #3
+const { lstat } = fs.promises;
 
 //* Read Current Directory
 fs.readdir(process.cwd(), (err, filenames) => {
@@ -14,7 +18,9 @@ fs.readdir(process.cwd(), (err, filenames) => {
     console.log(err);
   }
 
-  // Get information about file and determine type
+  //* Get information about file and determine type
+
+  // Method #1 with Promise
   // const lstat = (filename) => {
   //   return new Promise((resolve, reject) => {
   //     fs.lstat(filename, (err, stats) => {
